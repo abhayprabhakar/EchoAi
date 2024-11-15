@@ -12,17 +12,17 @@ EchoAi is an innovative tool designed to revolutionize customer support by enabl
 **Voice-to-Text Conversion**: The spoken input is converted into text using Speech-to-Text (STT) technology.
 **LLM with RAG**: The transcribed text is processed by an LLM that uses Retrieval-Augmented Generation to fetch relevant information from the provided knowledge base.
 **Text-to-Voice Conversion**: The system converts the LLM's response into spoken output using Text-to-Speech (TTS) technology, completing the interaction loop.
-
+### Use Cases
 Customer service helplines
 Product inquiry systems
 Automated support for FAQs
 Voice-enabled chatbots
 AI-powered IVR (Interactive Voice Response) systems
-Technologies Used
-Speech-to-Text (STT): Converts user speech to text.
-Large Language Model (LLM): Processes user queries intelligently.
-Retrieval-Augmented Generation (RAG): Enhances response quality by integrating relevant external knowledge.
-Text-to-Speech (TTS): Delivers responses in a natural voice.
-Docker: Ensures a seamless and portable deployment process.
-Vision
+## Technologies Used
+**Speech-to-Text (STT)**: Converts user speech to text.
+**Large Language Model (LLM)**: Processes user queries intelligently.
+**Retrieval-Augmented Generation (RAG)**: Enhances response quality by integrating relevant external knowledge.
+**Text-to-Speech (TTS)**: Delivers responses in a natural voice.
+**Docker**: Ensures a seamless and portable deployment process.
+## Vision
 EchoAi aims to redefine customer support by providing a natural, efficient, and scalable solution that reduces the workload on human support teams while improving customer satisfaction.
