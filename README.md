@@ -41,14 +41,14 @@ cd EchoAi
 1. Build the Docker Image
 Build the Docker image using the provided `Dockerfile`:
 
-```console
+```bash
 docker build -t echoai:latest .
 ```
 * This command creates a Docker image named `echoai` with the `latest` tag.
 2. Run the Docker Container
 Run a container using the built image:
 
-```console
+```bash
 docker run -d -p 5000:5000 --name echoai-container echoai:latest
 ```
 * `-d`: Runs the container in detached mode (in the background).
@@ -59,52 +59,52 @@ After this step, the EchoAi application will be accessible at `http://localhost:
 3. Environment Variables (Optional)
 If the application requires environment variables (e.g., API keys for LLM or STT), you can pass them during container creation using the `-e` flag:
 
-```console
+```bash
 docker run -d -p 5000:5000 --name echoai-container -e GROQ_API_KEY=<your_api_key> AZURE_API_KEY=<your_api_key> AZURE_REGION=<your_api_key> echoai:latest
 ```
 ## Stopping and Restarting the Container
 ### Stop the Container
 To stop the running container:
 
-```console
+```bash
 docker stop echoai-container
 ```
 ### Start the Container Again
 To restart the container:
 
-```console
+```bash
 docker start echoai-container
 ```
 ### Remove the Container
 If you need to remove the container completely:
 
-```console
+```bash
 docker rm -f echoai-container
 ```
 ## Updating the Application
 If you update the code or the Dockerfile, you’ll need to rebuild the Docker image:
 
 1. Stop and remove the existing container:
-```console
+```bash
 docker stop echoai-container
 docker rm echoai-container
 ```
 2. Rebuild the image:
-```console
+```bash
 docker build -t echoai:latest .
 ```
 3. Run the container again:
-```console
+```bash
 docker run -d -p 5000:5000 --name echoai-container echoai:latest
 ```
 ### Logs and Debugging
 To view the logs of the running container:
 
-```console
+```bash
 docker logs echoai-container
 ```
 For interactive debugging inside the container:
-```console
+```bash
 docker exec -it echoai-container /bin/bash
 ```
 ## Deploying in Production
