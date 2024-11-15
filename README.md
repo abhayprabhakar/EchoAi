@@ -33,7 +33,7 @@ Follow these instructions to build and deploy the EchoAi application using Docke
 ### Prerequisites
 1. Ensure you have Docker installed on your system.
 2. Clone this repository to your local machine:
-```console
+```bash
 git clone https://github.com/abhayprabhakar/EchoAi.git
 cd EchoAi
 ```
