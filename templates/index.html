@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>      
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+             
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant with Audio Integration</title>
+</head>
+<body>
+    <div class="particles"></div>
+    <div class="container">
+        <div class="circle human" id="start">
+            Human
+        </div>
+        <div class="message" id="humanMessage"></div>
+    </div>
+    <div class="container">
+        <div class="circle ai" id="aiCircle">
+            AI
+        </div>
+        <div class="message" id="aiMessage"></div>
+    </div>
+    <audio id="audioPlayer" controls></audio>   
+</body>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>    
+</html>

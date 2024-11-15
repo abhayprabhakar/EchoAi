@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-color: #1a1a2e;
+    font-family: 'Poppins';     
+    overflow: hidden;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    position: relative;
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.circle:hover {
+    transform: scale(1.1);
+}
+.human {
+    background-color: #0f3460;
+}
+.ai {
+    background-color: #16213e;
+}
+.speaking {
+    animation: pulse 1s infinite alternate;
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+    }
+}
+.message {
+    background-color: transparent;          
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 16px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    max-width: 300px;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.show-message {
+    opacity: 1;
+    transform: translateY(-10px);
+}
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 110%;
+    overflow: hidden;
+    z-index: -1;
+}
+.particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: float 15s infinite linear;
+}
+@keyframes float {
+    0% {
+        transform: translateY(100vh) scale(0);
+    }
+    100% {
+        transform: translateY(-10vh) scale(1);
+    }
+}
+#audioPlayer {
+    display: none;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
+    .circle {
+        width: 120px;
+        height: 120px;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .message {
+        font-size: 12px;
+        max-width: 200px;
+        padding: 6px 10px;
+        min-height: 40px;
+    }
+}

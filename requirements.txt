@@ -1,0 +1,15 @@
+Flask
+numpy # Assuming you're using Google Cloud Generative AI
+azure-cognitiveservices-speech
+flask-cors
+groq
+python-dotenv
+groq
+langchain
+langchain-huggingface
+langchain-core
+langchain-community
+langchain-groq
+pypdf
+faiss-cpu
+python-dotenv
