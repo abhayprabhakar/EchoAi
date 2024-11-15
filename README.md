@@ -119,6 +119,6 @@ For production deployment:
 2. Optionally, set up Docker Compose for easier multi-container orchestration.
  
 # Contributors ✨
-<a href = "https://github.com/abhayprabhakar/Python/graphs/contributors">
+<a href = "https://github.com/abhayprabhakar">
   <img src = "https://contrib.rocks/image?repo = abhayprabhakar/EchoAi"/>
 </a>
