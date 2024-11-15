@@ -66,7 +66,7 @@ After this step, the EchoAi application will be accessible at `http://localhost:
 If the application requires environment variables (e.g., API keys for LLM or STT), you can pass them during container creation using the `-e` flag:
 
 ```bash
-docker run -d -p 5000:5000 --name echoai-container -e GROQ_API_KEY=<your_api_key> AZURE_API_KEY=<your_api_key> AZURE_REGION=<your_api_key> echoai:latest
+docker run -d -p 5000:5000 --name echoai-container -e GROQ_API_KEY=<your_api_key> AZURE_API_KEY=<your_api_key> AZURE_REGION=<your_azure_region> echoai:latest
 ```
 ## Stopping and Restarting the Container
 ### Stop the Container
