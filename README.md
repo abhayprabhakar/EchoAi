@@ -39,28 +39,28 @@ cd EchoAi
 ```
 ### Steps to Build and Run the Docker Container
 1. Build the Docker Image
-Build the Docker image using the provided Dockerfile:
+Build the Docker image using the provided `Dockerfile`:
 
 ```console
 docker build -t echoai:latest .
 ```
-* This command creates a Docker image named echoai with the latest tag.
+* This command creates a Docker image named `echoai` with the `latest` tag.
 2. Run the Docker Container
 Run a container using the built image:
 
 ```console
 docker run -d -p 5000:5000 --name echoai-container echoai:latest
 ```
-* -d: Runs the container in detached mode (in the background).
-* -p 5000:5000: Maps port 5000 of the container to port 5000 on your host machine.
-* --name echoai-container: Assigns a name to the container.
-After this step, the EchoAi application will be accessible at http://localhost:5000 in your web browser.
+* `-d`: Runs the container in detached mode (in the background).
+* `-p 5000:5000`: Maps port 5000 of the container to port 5000 on your host machine.
+* `--name echoai-container`: Assigns a name to the container.
+After this step, the EchoAi application will be accessible at `http://localhost:5000` in your web browser.
 
 3. Environment Variables (Optional)
-If the application requires environment variables (e.g., API keys for LLM or STT), you can pass them during container creation using the -e flag:
+If the application requires environment variables (e.g., API keys for LLM or STT), you can pass them during container creation using the `-e` flag:
 
 ```console
-docker run -d -p 5000:5000 --name echoai-container -e API_KEY=<your_api_key> echoai:latest
+docker run -d -p 5000:5000 --name echoai-container -e GROQ_API_KEY=<your_api_key> AZURE_API_KEY=<your_api_key> AZURE_REGION=<your_api_key> echoai:latest
 ```
 ## Stopping and Restarting the Container
 ### Stop the Container
