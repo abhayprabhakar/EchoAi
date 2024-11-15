@@ -120,5 +120,5 @@ For production deployment:
  
 # Contributors ✨
 <a href = "https://github.com/abhayprabhakar">
-  <img src = "https://contrib.rocks/image?repo = abhayprabhakar/EchoAi"/>
+  <img src = "https://avatars.githubusercontent.com/u/123283257?v=4"/>
 </a>
