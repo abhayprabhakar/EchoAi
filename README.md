@@ -122,5 +122,8 @@ For production deployment:
 <a href="https://github.com/abhayprabhakar/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=abhayprabhakar/EchoAi" />
 </a>
+<a href="https://github.com/toxicskull/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=abhayprabhakar/EchoAi" />
+</a>
 
 Made with [contrib.rocks](https://contrib.rocks).
