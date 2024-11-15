@@ -9,7 +9,7 @@ from flask_cors import CORS  # Import CORS
 import os
 from groq import Groq               
 import time 
-from coversational_rag import ConversationalRAG 
+from conversational_rag import ConversationalRAG 
 from dotenv import load_dotenv
 
 load_dotenv()
