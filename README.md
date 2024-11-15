@@ -37,6 +37,12 @@ Follow these instructions to build and deploy the EchoAi application using Docke
 git clone https://github.com/abhayprabhakar/EchoAi.git
 cd EchoAi
 ```
+## Documentation for RAG
+EchoAi utilizes **Retrieval-Augmented Generation (RAG)** to provide accurate and context-aware responses. All **PDF** and **CSV** files placed in the `documentation` folder will be considered as the knowledge base for RAG.
+
+To include your own documentation:
+1. Add your `.pdf` and `.csv` files to the `documentation` folder.
+2. The application will automatically index these files and use them for generating responses.
 ### Steps to Build and Run the Docker Container
 1. Build the Docker Image
 Build the Docker image using the provided `Dockerfile`:
