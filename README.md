@@ -123,7 +123,7 @@ For production deployment:
   <img src="https://contrib.rocks/image?repo=abhayprabhakar/EchoAi" />
 </a>
 <a href="https://github.com/toxicskull/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=abhayprabhakar/EchoAi" />
+  <img src="https://contrib.rocks/image?repo=toxicskulll/pmgdemo" />
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
