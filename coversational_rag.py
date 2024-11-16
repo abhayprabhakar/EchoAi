@@ -18,10 +18,11 @@ class ConversationalRAG:
         # Initialize models
         self.embed_model = HuggingFaceEmbeddings(model_name=embedding_model)
         self.chat_model = ChatGroq(temperature=0, model_name=model_name, api_key=api_key)
-        self.system_prompt = """You are an assistant for question-answering tasks. \
+        self.system_prompt = """You are a highly intelligent and professional customer support assistant for Samsung products. Your goal is to assist customers with their queries in a friendly, polite, and efficient manner. \
         Use the following pieces of retrieved context and chat history to answer the question. \
         If you don't know the answer, just say that you don't know. \
         Use three sentences maximum and keep the answer concise.\
+        Ask follow up question to user\
 
         {context}"""
         # Load and index documents from both PDF and CSV files
