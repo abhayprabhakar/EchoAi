@@ -8,12 +8,13 @@ const aiMessage = document.getElementById('aiMessage');
 let mediaRecorder;
 let audioChunks = [];
 let silenceTimeout;
-const SILENCE_THRESHOLD = 1000; // Time in ms before stopping recording 
-const SILENCE_THRESHOLD_VALUE = 100; // Volume threshold to detect silence
-const SILENCE_DETECTION_DELAY = 2000; // Delay before starting silence detection
+const SILENCE_THRESHOLD = 2000; // Time in ms before stopping recording 
+const SILENCE_THRESHOLD_VALUE = 60; // Volume threshold to detect silence
+const SILENCE_DETECTION_DELAY = 1500; // Delay before starting silence detection
 let isRecording = false; // Flag to manage recording state
 let isProcessing = false; // New flag to track if we're processing audio
 let currentStream = null; // Store the current audio stream
+let disableTTS = false;
 
 // Event Listener for Starting Voice Chat
 document.getElementById('start').addEventListener('click', () => {
@@ -75,7 +76,7 @@ async function handleRecordingStop() {
         }
 
         // Make the fetch request with error handling
-        const response = await fetch('https://test.abhayprabhakar.co.in/stt', { 
+        const response = await fetch('http://localhost:5000/stt', { 
             method: 'POST', 
             body: formData 
         });
@@ -133,7 +134,7 @@ async function sendTextToLLM(text) {
             throw new TypeError('Invalid text input for LLM');
         }
 
-        const response = await fetch('https://test.abhayprabhakar.co.in/llm', {
+        const response = await fetch('http://localhost:5000/llm', {
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
@@ -159,7 +160,11 @@ async function handleLLMResponse(aidata) {
     if (aidata.text) {
         aiMessage.textContent = aidata.text;
         aiMessage.classList.add('show-message');
-        await playAudioResponse(aidata.text);
+        if (!disableTTS) {
+            await playAudioResponse(aidata.text); // Play TTS if flag is false
+        } else {
+            console.log("TTS is disabled for testing. Skipping TTS.");
+        }
         restartRecording(); // Restart recording after AI response
     } else {
         console.error("AI Response failed:", aidata.error);
@@ -171,7 +176,7 @@ async function handleLLMResponse(aidata) {
 async function playAudioResponse(text) {
     try {
         aiCircle.classList.add('speaking')
-        const ttsResponse = await fetch('https://test.abhayprabhakar.co.in/tts', {
+        const ttsResponse = await fetch('http://localhost:5000/tts', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text })
@@ -228,7 +233,7 @@ function restartRecording() {
     } catch (error) {
         console.error('Error in restartRecording:', error);
         // If restart fails, try again after a longer delay
-        setTimeout(restartRecording, 2000);
+        setTimeout(restartRecording, 3000);
     }
 }
 // Detect Silence and Stop Recording
@@ -240,22 +245,30 @@ function detectSilence(stream) {
     analyser.fftSize = 2048;
     const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
+    let isSilent = false;
+
     const checkSilence = () => {
         if (!mediaRecorder || mediaRecorder.state === "inactive") return; // Early exit if not recording
+
         analyser.getByteFrequencyData(dataArray);
         const averageVolume = dataArray.reduce((a, b) => a + b) / dataArray.length;
 
         if (averageVolume < SILENCE_THRESHOLD_VALUE) {
-            if (!silenceTimeout) {
+            // Only set the silence flag after a delay
+            if (!isSilent) {
+                isSilent = true;
                 silenceTimeout = setTimeout(() => {
-                    if (mediaRecorder.state === "recording") { // Check state before stopping
-                        mediaRecorder.stop(); // Stop recording on silence
+                    if (isSilent && mediaRecorder.state === "recording") {
+                        mediaRecorder.stop(); // Stop recording on sustained silence
                     }
                 }, SILENCE_THRESHOLD);
             }
         } else {
-            clearTimeout(silenceTimeout);
-            silenceTimeout = null;
+            isSilent = false; // Reset silence state when noise is detected
+            if (silenceTimeout) {
+                clearTimeout(silenceTimeout); // Cancel the silence timeout
+                silenceTimeout = null;
+            }
         }
 
         requestAnimationFrame(checkSilence); // Continuously check for silence
@@ -265,6 +278,7 @@ function detectSilence(stream) {
         checkSilence(); // Start checking for silence after the initial delay
     }, SILENCE_DETECTION_DELAY);
 }
+
 
 // Play Audio and Wait
 function playAudioAndWait(audioSource) {

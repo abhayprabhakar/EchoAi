@@ -18,9 +18,9 @@ CORS(app)  # Allow only specific origin
 app.secret_key = os.urandom(24)  # Securely set the secret key for Flask sessions
 
 # Initialize ConversationalRAG once
-pdf_directory = "documentation/"
-pdf_paths = [os.path.join(pdf_directory, f) for f in os.listdir(pdf_directory) if (f.endswith('.csv') or f.endswith('.pdf'))]
-conversational_rag = ConversationalRAG(file_paths=pdf_paths, api_key=os.environ.get("GROQ_API_KEY"))
+file_directory = "documentation/"
+file_paths = [os.path.join(file_directory, f) for f in os.listdir(file_directory) if (f.endswith('.csv') or f.endswith('.pdf'))]
+conversational_rag = ConversationalRAG(file_paths=file_paths, api_key=os.environ.get("GROQ_API_KEY"))
 
 @app.before_request
 def initialize_user_session():
@@ -73,6 +73,8 @@ def qa_with_memory():
     response = model.generate_content(audio_string)
     return response.text if response else ""  # Handle empty responses gracefully
  """
+ 
+
 def groq_llm(text):
     client = Groq(
         # This is the default and can be omitted
@@ -179,7 +181,7 @@ def sts():
     except Exception as e:
         print(f"Error occurred: {str(e)}")
         return jsonify({'error': f"An error occurred: {str(e)}"}), 500 
-""" 
+
 # API endpoint for LLM
 @app.route('/ai', methods=['POST'])
 def generate_llm_response():
@@ -190,12 +192,12 @@ def generate_llm_response():
         return jsonify({'error': 'No text provided'}), 400
     
     if text:
-        llm_response = gemini_llm(text)
+        llm_response = groq_llm(text)
         response_data = {
         'text': f'{llm_response}'  # Example response
         }
     return jsonify(response_data), 200  # Return a JSON respons          
- """
+
 # API endpoint for TTS
 @app.route('/tts', methods=['POST'])
 def tts():
