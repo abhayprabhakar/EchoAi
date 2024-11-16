@@ -1,7 +1,28 @@
 # EchoAi
 
 **EchoAi** is an innovative tool designed to revolutionize customer support by enabling seamless, real-time voice interactions. It utilizes cutting-edge technologies to provide a smooth and efficient way for users to interact with automated support systems through natural conversation.
+Here’s an example of a **Table of Contents** for your EchoAI README file. You can adjust it based on the sections of your project documentation:
 
+---
+## Table of Contents
+1. [Key Features](#key-features)
+2. [How It Works](#how-it-works)
+3. [Use Cases](#use-cases)
+4. [Technologies Used](#technologies-used)
+5. [Vision](#vision)
+6. [API Endpoints](#api-endpoints)
+7. [Documentation for RAG](#documentation-for-rag)
+8. [Building and Deploying EchoAi with Docker](#building-and-deploying-echoai-with-docker)
+   - [Prerequisites](#prerequisites)
+   - [Steps to Build and Run the Docker Container](#steps-to-build-and-run-the-docker-container)
+   - [Using Custom Documentation](#using-custom-documentation)
+   - [Stopping and Restarting the Container](#stopping-and-restarting-the-container)
+   - [Updating the Application](#updating-the-application)
+9. [Logs and Debugging](#logs-and-debugging)
+10. [Deploying in Production](#deploying-in-production)
+11. [Our Team✨](#our-team✨)
+
+---
 ### **Key Features**
 - **Speech-to-Text Conversion**: EchoAi accurately transcribes user voice input into text using advanced speech recognition algorithms.
 - **Natural Language Processing**: The transcribed text is processed by a **Large Language Model (LLM)** with **Retrieval-Augmented Generation (RAG)**, allowing for intelligent and context-aware responses based on your specific product documentation or knowledge base.
