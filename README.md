@@ -123,7 +123,12 @@ For production deployment:
   <img src="https://contrib.rocks/image?repo=abhayprabhakar/EchoAi" />
 </a>
 <a href="https://github.com/toxicskulll">
+  <img src="https://contrib.rocks/image?repo=DevAdy/DevAdy" />
+</a>
+<a href="https://github.com/toxicskulll">
   <img src="https://contrib.rocks/image?repo=toxicskulll/pmgdemo" />
 </a>
-
+<a href="https://github.com/toxicskulll">
+  <img src="https://contrib.rocks/image?repo=knighthyper/clone" />
+</a>
 Made with [contrib.rocks](https://contrib.rocks).
