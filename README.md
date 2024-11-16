@@ -120,7 +120,7 @@ After this step, the EchoAi application will be accessible at `http://localhost:
 #### **3. Environment Variables (Optional)**
 If the application requires environment variables (e.g., API keys for LLM or STT), you can pass them during container creation using the `-e` flag:
 ```bash
-docker run -d -p 5000:5000 --name echoai-container -e API_KEY=<your_api_key> echoai:latest
+docker run -d -p 5000:5000 --name echoai-container -e GROQ_API_KEY=<your_api_key> -e AZURE_API_KEY=<your_api_key> -e AZURE_REGION=<azure_region> echoai:latest
 ```
 
 ---
@@ -194,3 +194,18 @@ For production deployment:
 2. Optionally, set up Docker Compose for easier multi-container orchestration.
 
 ---
+# Our Team✨
+<a href="https://github.com/abhayprabhakar" style="text-decoration: none">
+  <img src="https://contrib.rocks/image?repo=abhayprabhakar/EchoAi" />
+</a>
+<a href="https://github.com/devady" style="text-decoration: none">
+  <img src="https://contrib.rocks/image?repo=devady/devady" />
+</a>
+<a href="https://github.com/toxicskulll" style="text-decoration: none">
+  <img src="https://contrib.rocks/image?repo=toxicskulll/pmgdemo" />
+</a>
+<a href="https://github.com/knighthyper" style="text-decoration: none">
+  <img src="https://contrib.rocks/image?repo=knighthyper/clone" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
