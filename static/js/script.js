@@ -9,17 +9,63 @@ let mediaRecorder;
 let audioChunks = [];
 let silenceTimeout;
 const SILENCE_THRESHOLD = 2000; // Time in ms before stopping recording 
-const SILENCE_THRESHOLD_VALUE = 60; // Volume threshold to detect silence
-const SILENCE_DETECTION_DELAY = 1500; // Delay before starting silence detection
+const SILENCE_THRESHOLD_VALUE = 50; // Volume threshold to detect silence
+const SILENCE_DETECTION_DELAY = 2000; // Delay before starting silence detection
 let isRecording = false; // Flag to manage recording state
 let isProcessing = false; // New flag to track if we're processing audio
 let currentStream = null; // Store the current audio stream
 let disableTTS = false;
 
+
 // Event Listener for Starting Voice Chat
 document.getElementById('start').addEventListener('click', () => {
-    startVoiceChatLoop();
-});
+    if (isRecording || isProcessing) return; // Prevent starting if already recording or processing
+  
+    isRecording = true;
+  
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+        currentStream = stream;
+        setupMediaRecorder(stream);
+        detectSilence(stream);
+      })
+      .catch(error => {
+        console.error("Error accessing media devices:", error);
+        isRecording = false;
+      });
+  
+    // Add event listener for click interrupt
+    humanCircle.addEventListener('click', interruptAIClick);
+  });
+
+// Function to handle interrupt by clicking humanCircle
+function interruptAIClick() {
+    if (!isRecording || mediaRecorder.state !== "inactive") return; // Only interrupt if AI is speaking
+  
+    console.log("Interrupting AI audio...");
+  
+    // Stop audio playback
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.pause();
+    audioPlayer.removeEventListener('ended'); // Remove ended listener
+  
+    // Stop media recorder if recording (shouldn't be, but for safety)
+    if (mediaRecorder.state === "recording") {
+      mediaRecorder.stop();
+    }
+  
+    // Clean up current stream and audio chunks
+    if (currentStream) {
+      currentStream.getTracks().forEach(track => track.stop());
+    }
+    audioChunks = [];
+  
+    // Restart recording loop
+    restartRecording();
+  
+    // Remove interrupt listener
+    humanCircle.removeEventListener('click', interruptAIClick);
+}
 
 // Start the voice chat loop
 function startVoiceChatLoop() {
@@ -76,7 +122,7 @@ async function handleRecordingStop() {
         }
 
         // Make the fetch request with error handling
-        const response = await fetch('http://localhost:5000/stt', { 
+        const response = await fetch('https://test.abhayprabhakar.co.in/stt', { 
             method: 'POST', 
             body: formData 
         });
@@ -134,7 +180,7 @@ async function sendTextToLLM(text) {
             throw new TypeError('Invalid text input for LLM');
         }
 
-        const response = await fetch('http://localhost:5000/llm', {
+        const response = await fetch('https://test.abhayprabhakar.co.in/llm', {
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
@@ -176,7 +222,7 @@ async function handleLLMResponse(aidata) {
 async function playAudioResponse(text) {
     try {
         aiCircle.classList.add('speaking')
-        const ttsResponse = await fetch('http://localhost:5000/tts', {
+        const ttsResponse = await fetch('https://test.abhayprabhakar.co.in/tts', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text })
@@ -199,41 +245,28 @@ async function playAudioResponse(text) {
 // New function to restart the recording process
 function restartRecording() {
     try {
-        isRecording = false;
-        isProcessing = false;
-        audioChunks = [];
-        
-        if (silenceTimeout) {
-            clearTimeout(silenceTimeout);
-            silenceTimeout = null;
-        }
-
-        // Clean up media recorder if it exists
-        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-            try {
-                mediaRecorder.stop();
-            } catch (e) {
-                console.warn('Error stopping mediaRecorder:', e);
-            }
-        }
-
-        // Clean up stream tracks
-        if (currentStream) {
-            currentStream.getTracks().forEach(track => track.stop());
-            currentStream = null;
-        }
-        
-        // Clear messages after a delay
+      isRecording = false;
+      isProcessing = false;
+      audioChunks = [];
+  
+      if (silenceTimeout) {
+        clearTimeout(silenceTimeout);
+        silenceTimeout = null;
+      }
+  
+      // Clear messages after a delay
+      setTimeout(() => {
+        humanMessage.classList.remove('show-message');
+        aiMessage.classList.remove('show-message');
+  
+        // Start a new recording cycle with a longer delay
         setTimeout(() => {
-            humanMessage.classList.remove('show-message');
-            aiMessage.classList.remove('show-message');
-            // Start a new recording cycle
-            startVoiceChatLoop();
-        }, 1000);
+          startVoiceChatLoop();
+        }, 2000); // Adjust delay as needed
+      }, 1000);
     } catch (error) {
-        console.error('Error in restartRecording:', error);
-        // If restart fails, try again after a longer delay
-        setTimeout(restartRecording, 3000);
+      console.error('Error in restartRecording:', error);
+      setTimeout(restartRecording, 3000); // Retry with a longer delay
     }
 }
 // Detect Silence and Stop Recording
