@@ -122,7 +122,7 @@ async function handleRecordingStop() {
         }
 
         // Make the fetch request with error handling
-        const response = await fetch('https://test.abhayprabhakar.co.in/stt', { 
+        const response = await fetch('http://localhost:5000/stt', { 
             method: 'POST', 
             body: formData 
         });
@@ -180,7 +180,7 @@ async function sendTextToLLM(text) {
             throw new TypeError('Invalid text input for LLM');
         }
 
-        const response = await fetch('https://test.abhayprabhakar.co.in/llm', {
+        const response = await fetch('http://localhost:5000/llm', {
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
@@ -222,7 +222,7 @@ async function handleLLMResponse(aidata) {
 async function playAudioResponse(text) {
     try {
         aiCircle.classList.add('speaking')
-        const ttsResponse = await fetch('https://test.abhayprabhakar.co.in/tts', {
+        const ttsResponse = await fetch('http://localhost:5000/tts', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text })
