@@ -1,7 +1,6 @@
 # EchoAi
 
 **EchoAi** is an innovative tool designed to revolutionize customer support by enabling seamless, real-time voice interactions. It utilizes cutting-edge technologies to provide a smooth and efficient way for users to interact with automated support systems through natural conversation.
-Here’s an example of a **Table of Contents** for your EchoAI README file. You can adjust it based on the sections of your project documentation:
 
 ---
 ## Table of Contents
