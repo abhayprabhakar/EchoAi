@@ -19,7 +19,7 @@
    - [Updating the Application](#updating-the-application)
 9. [Logs and Debugging](#logs-and-debugging)
 10. [Deploying in Production](#deploying-in-production)
-11. [Our Team✨](our-team✨)
+11. [Our Team✨](#our-team✨)
 
 ---
 ### **Key Features**
@@ -214,7 +214,7 @@ For production deployment:
 2. Optionally, set up Docker Compose for easier multi-container orchestration.
 
 ---
-## Our Team✨
+### Our Team✨
 <a href="https://github.com/abhayprabhakar" style="text-decoration: none"><img src="https://contrib.rocks/image?repo=abhayprabhakar/abhayprabhakar"/></a>
 <a href="https://github.com/devady" style="text-decoration: none"><img src="https://contrib.rocks/image?repo=devady/devady"/></a>
 <a href="https://github.com/toxicskulll" style="text-decoration: none"><img src="https://contrib.rocks/image?repo=toxicskulll/pmgdemo"/></a>
