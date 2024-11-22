@@ -19,7 +19,7 @@
    - [Updating the Application](#updating-the-application)
 9. [Logs and Debugging](#logs-and-debugging)
 10. [Deploying in Production](#deploying-in-production)
-11. [Our Team✨](#our-team✨)
+11. [Our Team✨](#our-team)
 
 ---
 ### **Key Features**
