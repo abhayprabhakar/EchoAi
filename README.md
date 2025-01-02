@@ -217,7 +217,7 @@ For production deployment:
 ### Our Team✨
 <a href="https://github.com/abhayprabhakar" style="text-decoration: none"><img src="https://contrib.rocks/image?repo=abhayprabhakar/abhayprabhakar"/></a>
 <a href="https://github.com/devady" style="text-decoration: none"><img src="https://contrib.rocks/image?repo=devady/devady"/></a>
-<a href="https://github.com/toxicskulll" style="text-decoration: none"><img src="https://contrib.rocks/image?repo=toxicskulll/pmgdemo"/></a>
+<a href="https://github.com/toxicskulll" style="text-decoration: none"><img src="https://contrib.rocks/image?repo=toxicskulll/AI-for-Enhancing-Energy-Efficiency-in-Smart-Buildings"/></a>
 <a href="https://github.com/knighthyper" style="text-decoration: none"><img src="https://contrib.rocks/image?repo=knighthyper/clone"/></a>
 
 Made with [contrib.rocks](https://contrib.rocks).
